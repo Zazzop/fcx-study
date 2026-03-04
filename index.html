@@ -75,6 +75,10 @@
             <button onclick="showTab('debug-cheatsheet')" class="tab-btn relative flex items-center gap-2 px-6 py-3 font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-t-lg transition-colors border border-transparent whitespace-nowrap">
                 <i data-lucide="stethoscope" class="w-4 h-4 text-emerald-400"></i> <span data-i18n="tabDebug">Derin Debug Hile Kağıdı</span>
             </button>
+            <!-- NEW TAB BUTTON -->
+            <button onclick="showTab('resources')" class="tab-btn relative flex items-center gap-2 px-6 py-3 font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-t-lg transition-colors border border-transparent whitespace-nowrap">
+                <i data-lucide="library" class="w-4 h-4 text-blue-400"></i> <span data-i18n="tabResources">Kaynaklar & Linkler</span>
+            </button>
         </div>
 
         <!-- Tab: Referenced Schedule -->
@@ -167,6 +171,104 @@ diag debug enable</pre>
             </div>
         </div>
 
+        <!-- NEW TAB: Resources & Links -->
+        <div id="resources" class="tab-content">
+            <div class="bg-slate-800/50 rounded-xl border border-slate-700 p-6 mb-6 backdrop-blur-sm">
+                <div class="mb-8 border-b border-slate-700/50 pb-4">
+                    <h2 class="text-xl font-bold flex items-center gap-2 text-white"><i data-lucide="library" class="text-blue-500"></i> <span data-i18n="resMainTitle">Çalışma Kaynakları & Faydalı Linkler</span></h2>
+                    <p class="text-slate-400 text-sm mt-2" data-i18n="resMainDesc">fcxstudy.group sitesinden ve topluluktan derlenmiş en iyi FCX çalışma materyalleri ve dış kaynaklar.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Column 1: fcxstudy.group Articles -->
+                    <div class="bg-slate-800/80 p-6 rounded-xl border border-slate-700">
+                        <h3 class="text-lg font-bold mb-5 text-white flex items-center gap-2">
+                            <i data-lucide="book-open" class="text-purple-500"></i> 
+                            <span data-i18n="resTitle1">FCX Study Group Makaleleri</span>
+                        </h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <!-- Link 1 -->
+                            <li class="flex items-start gap-3 p-4 bg-slate-900/60 rounded-lg border border-slate-700/50 hover:border-purple-500/50 hover:bg-slate-900 transition duration-300 group">
+                                <i data-lucide="terminal" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <a href="https://fcxstudy.group/2025/11/19/advanced-fortigate-troubleshooting-fnsysctl/" target="_blank" class="font-bold text-slate-200 group-hover:text-purple-400 transition flex items-center gap-1">
+                                        Advanced FortiGate Troubleshooting – fnsysctl
+                                        <i data-lucide="external-link" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition"></i>
+                                    </a>
+                                    <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" data-i18n="resArt1">Linux tabanlı işletim sistemi altında gelişmiş sorun giderme komutları ve kullanımı (Yazar: Andrew Reynolds).</p>
+                                </div>
+                            </li>
+                            <!-- Link 2 -->
+                            <li class="flex items-start gap-3 p-4 bg-slate-900/60 rounded-lg border border-slate-700/50 hover:border-purple-500/50 hover:bg-slate-900 transition duration-300 group">
+                                <i data-lucide="folder-tree" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <a href="https://fcxstudy.group/2025/11/20/handy-commands-in-fortios-tree/" target="_blank" class="font-bold text-slate-200 group-hover:text-purple-400 transition flex items-center gap-1">
+                                        Handy Commands in FortiOS – Tree
+                                        <i data-lucide="external-link" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition"></i>
+                                    </a>
+                                    <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" data-i18n="resArt2">FortiOS içindeki konfigürasyon ağacını (tree) ve komut yapısını hızlıca haritalandırma rehberi.</p>
+                                </div>
+                            </li>
+                            <!-- Link 3 -->
+                            <li class="flex items-start gap-3 p-4 bg-slate-900/60 rounded-lg border border-slate-700/50 hover:border-purple-500/50 hover:bg-slate-900 transition duration-300 group">
+                                <i data-lucide="award" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <a href="https://fcxstudy.group/2025/11/12/my-fcx-experience-salon-raj-joshi-nse8-003459/" target="_blank" class="font-bold text-slate-200 group-hover:text-purple-400 transition flex items-center gap-1">
+                                        My FCX Experience – Salon Raj Joshi
+                                        <i data-lucide="external-link" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition"></i>
+                                    </a>
+                                    <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" data-i18n="resArt3">NSE8-003459 sertifika süreci, çalışma ipuçları ve lab sınavı deneyimleri üzerine bir röportaj.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Column 2: YouTube Channels & Other Links -->
+                    <div class="bg-slate-800/80 p-6 rounded-xl border border-slate-700">
+                        <h3 class="text-lg font-bold mb-5 text-white flex items-center gap-2">
+                            <i data-lucide="youtube" class="text-red-500"></i> 
+                            <span data-i18n="resTitle2">Faydalı YouTube Kanalları</span>
+                        </h3>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <!-- YT 1 -->
+                            <li class="flex items-start gap-3 p-4 bg-slate-900/60 rounded-lg border border-slate-700/50 hover:border-red-500/50 hover:bg-slate-900 transition duration-300 group">
+                                <i data-lucide="video" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/@CybowPoint" target="_blank" class="font-bold text-slate-200 group-hover:text-red-400 transition flex items-center gap-1">
+                                        CybowPoint
+                                        <i data-lucide="external-link" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition"></i>
+                                    </a>
+                                    <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" data-i18n="resYT1">Fortinet ürünleri ve genel siber güvenlik konfigürasyonları üzerine detaylı ve öğretici videolar.</p>
+                                </div>
+                            </li>
+                            <!-- YT 2 -->
+                            <li class="flex items-start gap-3 p-4 bg-slate-900/60 rounded-lg border border-slate-700/50 hover:border-red-500/50 hover:bg-slate-900 transition duration-300 group">
+                                <i data-lucide="video" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/@KeithBarker" target="_blank" class="font-bold text-slate-200 group-hover:text-red-400 transition flex items-center gap-1">
+                                        Keith Barker (CBTNuggets)
+                                        <i data-lucide="external-link" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition"></i>
+                                    </a>
+                                    <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" data-i18n="resYT2">CCIE eğitmeni Keith Barker'dan IT Güvenliği ve kapsamlı Fortinet topoloji eğitimleri.</p>
+                                </div>
+                            </li>
+                            <!-- YT 3 -->
+                            <li class="flex items-start gap-3 p-4 bg-slate-900/60 rounded-lg border border-slate-700/50 hover:border-red-500/50 hover:bg-slate-900 transition duration-300 group">
+                                <i data-lucide="video" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/@DataKnox/videos" target="_blank" class="font-bold text-slate-200 group-hover:text-red-400 transition flex items-center gap-1">
+                                        DataKnox
+                                        <i data-lucide="external-link" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition"></i>
+                                    </a>
+                                    <p class="text-xs text-slate-400 mt-1.5 leading-relaxed" data-i18n="resYT3">Ağ, güvenlik ve karmaşık sertifikasyon (NSE/CCIE/JNCIE) konularına yönelik teknik derinlikli eğitimler.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <script>
@@ -178,6 +280,7 @@ diag debug enable</pre>
                 tabSchedule: "Referanslı Çalışma Planı",
                 tabGap: "NSE 7 -> FCX Boşluk Analizi",
                 tabDebug: "Derin Debug Hile Kağıdı",
+                tabResources: "Kaynaklar & Linkler",
                 curriculumTitle: "FCX Master Lab Müfredatı",
                 curriculumDesc: "Tüm görevler FortiOS 7.2/7.4 Admin Guide ve Troubleshooting KB'lerine referanslanmıştır.",
                 btnExpandAll: "Tümünü Aç/Kapat",
@@ -198,7 +301,17 @@ diag debug enable</pre>
                 debug2Title: "2. IPsec VPN Neden Kalkmıyor?",
                 debug2Code: `<span class="text-slate-500"># GUI 'Negotiation Timeout' der ama gerçeği CLI söyler (Örn: Peer ID mismatch, Proposal mismatch).</span>\ndiag vpn ike log-filter clear\ndiag vpn ike log-filter dst-addr4 x.x.x.x\ndiag debug app ike -1\ndiag debug enable\n<span class="text-slate-500"># Tünel faz 2 durumunu kernel seviyesinde görme:</span>\ndiag vpn tunnel list name TUNNEL_NAME`,
                 debug3Title: "3. BGP Komşuluk ve Route İncelemesi",
-                debug3Code: `<span class="text-slate-500"># Komşuluk var ama route neden RIB'e inmedi?</span>\nget router info bgp summary\nget router info bgp neighbors x.x.x.x advertised-routes\nget router info bgp neighbors x.x.x.x received-routes\n<span class="text-slate-500"># BGP paket debug (Update'leri izlemek için):</span>\ndiag ip router bgp all enable\ndiag ip router bgp level info\ndiag debug enable`
+                debug3Code: `<span class="text-slate-500"># Komşuluk var ama route neden RIB'e inmedi?</span>\nget router info bgp summary\nget router info bgp neighbors x.x.x.x advertised-routes\nget router info bgp neighbors x.x.x.x received-routes\n<span class="text-slate-500"># BGP paket debug (Update'leri izlemek için):</span>\ndiag ip router bgp all enable\ndiag ip router bgp level info\ndiag debug enable`,
+                resMainTitle: "Çalışma Kaynakları & Faydalı Linkler",
+                resMainDesc: "fcxstudy.group sitesinden ve topluluktan derlenmiş en iyi FCX çalışma materyalleri ve dış kaynaklar.",
+                resTitle1: "FCX Study Group Makaleleri",
+                resTitle2: "Faydalı YouTube Kanalları",
+                resArt1: "Linux tabanlı işletim sistemi altında gelişmiş sorun giderme komutları ve kullanımı (Yazar: Andrew Reynolds).",
+                resArt2: "FortiOS içindeki konfigürasyon ağacını (tree) ve komut yapısını hızlıca haritalandırma rehberi.",
+                resArt3: "NSE8-003459 sertifika süreci, çalışma ipuçları ve lab sınavı deneyimleri üzerine bir röportaj.",
+                resYT1: "Fortinet ürünleri ve genel siber güvenlik konfigürasyonları üzerine detaylı ve öğretici videolar.",
+                resYT2: "CCIE eğitmeni Keith Barker'dan IT Güvenliği ve kapsamlı Fortinet topoloji eğitimleri.",
+                resYT3: "Ağ, güvenlik ve karmaşık sertifikasyon (NSE/CCIE/JNCIE) konularına yönelik teknik derinlikli eğitimler."
             },
             en: {
                 subtitle: "NSE 7 to FCX Transition Portal - Document Referenced",
@@ -206,6 +319,7 @@ diag debug enable</pre>
                 tabSchedule: "Referenced Study Plan",
                 tabGap: "NSE 7 -> FCX Gap Analysis",
                 tabDebug: "Deep Debug Cheatsheet",
+                tabResources: "Resources & Links",
                 curriculumTitle: "FCX Master Lab Curriculum",
                 curriculumDesc: "All tasks are referenced to the FortiOS 7.2/7.4 Admin Guide and Troubleshooting KBs.",
                 btnExpandAll: "Expand / Collapse All",
@@ -226,7 +340,17 @@ diag debug enable</pre>
                 debug2Title: "2. Why is the IPsec VPN not coming up?",
                 debug2Code: `<span class="text-slate-500"># The GUI might say 'Negotiation Timeout', but the CLI tells the truth (e.g., Peer ID mismatch, Proposal mismatch).</span>\ndiag vpn ike log-filter clear\ndiag vpn ike log-filter dst-addr4 x.x.x.x\ndiag debug app ike -1\ndiag debug enable\n<span class="text-slate-500"># To see the Phase 2 tunnel status at the kernel level:</span>\ndiag vpn tunnel list name TUNNEL_NAME`,
                 debug3Title: "3. BGP Adjacency and Route Inspection",
-                debug3Code: `<span class="text-slate-500"># The adjacency is up, but why isn't the route installed in the RIB?</span>\nget router info bgp summary\nget router info bgp neighbors x.x.x.x advertised-routes\nget router info bgp neighbors x.x.x.x received-routes\n<span class="text-slate-500"># BGP packet debug (To monitor updates):</span>\ndiag ip router bgp all enable\ndiag ip router bgp level info\ndiag debug enable`
+                debug3Code: `<span class="text-slate-500"># The adjacency is up, but why isn't the route installed in the RIB?</span>\nget router info bgp summary\nget router info bgp neighbors x.x.x.x advertised-routes\nget router info bgp neighbors x.x.x.x received-routes\n<span class="text-slate-500"># BGP packet debug (To monitor updates):</span>\ndiag ip router bgp all enable\ndiag ip router bgp level info\ndiag debug enable`,
+                resMainTitle: "Study Resources & Useful Links",
+                resMainDesc: "Top FCX study materials and external resources curated from fcxstudy.group and the community.",
+                resTitle1: "FCX Study Group Articles",
+                resTitle2: "Useful YouTube Channels",
+                resArt1: "Advanced troubleshooting commands and usage under the Linux-based OS (Author: Andrew Reynolds).",
+                resArt2: "Guide to quickly mapping out the configuration tree and structure within FortiOS.",
+                resArt3: "An interview on the NSE8-003459 certification journey, study tips, and lab exam experiences.",
+                resYT1: "Detailed and educational videos on Fortinet products and general cybersecurity configurations.",
+                resYT2: "IT Security and comprehensive Fortinet topology training from CCIE trainer Keith Barker.",
+                resYT3: "Deep technical training aimed at networking, security, and complex certification (NSE/CCIE/JNCIE) topics."
             }
         };
 
