@@ -64,7 +64,7 @@
             border-color: #334155;
         }
         .theme-simple .bg-\[\#0a0a0a\] { background-color: #0f172a !important; }
-        .theme-simple .bg-black\/40, .theme-simple .bg-black\/60 { background-color: #1e293b !important; border-color: #334155 !important; }
+        .theme-simple .bg-black\/40, .theme-simple .bg-black\/60, .theme-simple .bg-black\/50 { background-color: #1e293b !important; border-color: #334155 !important; }
         .theme-simple .bg-\[\#111\] { background-color: #1e293b !important; }
         .theme-simple .border-neutral-800 { border-color: #334155 !important; }
         .theme-simple .text-neutral-400 { color: #94a3b8 !important; }
@@ -152,12 +152,9 @@
                         <button id="login-btn" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-colors shadow-lg">
                             <i data-lucide="log-in" class="w-4 h-4"></i> <span data-i18n="btnLogin">Giriş Yap</span>
                         </button>
-                        <div id="user-info" class="hidden flex items-center gap-3 bg-neutral-800/50 px-3 py-1.5 rounded-lg border border-neutral-700">
+                        <div id="user-info" class="hidden flex items-center gap-3 bg-neutral-800/50 px-3 py-1.5 rounded-lg border border-neutral-700 cursor-pointer hover:bg-neutral-800 transition" onclick="window.showTab('profile')">
                             <img id="user-photo" src="" alt="Profile" class="w-6 h-6 rounded-full border border-neutral-500">
                             <span id="user-name" class="text-sm font-semibold text-neutral-200"></span>
-                            <button id="logout-btn" class="text-neutral-400 hover:text-red-400 transition-colors ml-2" title="Çıkış Yap">
-                                <i data-lucide="log-out" class="w-4 h-4"></i>
-                            </button>
                         </div>
                     </div>
 
@@ -205,6 +202,9 @@
             </button>
             <button onclick="showTab('resources')" class="tab-btn relative flex items-center gap-2 px-6 py-3.5 font-semibold text-neutral-500 hover:text-white hover:bg-[#111]/50 rounded-t-xl transition-all border border-transparent whitespace-nowrap">
                 <i data-lucide="library" class="w-4 h-4 text-blue-500"></i> <span data-i18n="tabResources">Kaynaklar & Linkler</span>
+            </button>
+            <button onclick="showTab('profile')" class="tab-btn relative flex items-center gap-2 px-6 py-3.5 font-semibold text-neutral-500 hover:text-white hover:bg-[#111]/50 rounded-t-xl transition-all border border-transparent whitespace-nowrap">
+                <i data-lucide="user" class="w-4 h-4 text-indigo-500"></i> <span data-i18n="tabProfile">Profilim</span>
             </button>
         </div>
 
@@ -442,6 +442,82 @@ diag debug enable</pre>
             </div>
         </div>
 
+        <!-- NEW TAB: User Profile -->
+        <div id="profile" class="tab-content">
+            <div class="glass-panel rounded-2xl p-6 sm:p-8 mb-6 transition-colors duration-500">
+                <div class="mb-8 border-b border-neutral-800/80 pb-6 transition-colors duration-500">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-3 text-white">
+                        <div class="p-2 bg-indigo-500/10 rounded-lg border border-indigo-500/20"><i data-lucide="user" class="text-indigo-500 w-5 h-5"></i></div>
+                        <span data-i18n="tabProfile">Profilim</span>
+                    </h2>
+                </div>
+
+                <!-- Logged Out State -->
+                <div id="profile-logged-out" class="text-center py-12">
+                    <i data-lucide="shield-alert" class="w-16 h-16 text-neutral-600 mx-auto mb-4"></i>
+                    <h3 class="text-xl font-bold text-neutral-300 mb-2" data-i18n="profileNotLoggedInTitle">Giriş Yapılmadı</h3>
+                    <p class="text-neutral-500 mb-6" data-i18n="profileNotLoggedIn">Profilinizi ve istatistiklerinizi görmek için lütfen Google hesabınızla giriş yapın.</p>
+                    <button onclick="document.getElementById('login-btn').click()" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold transition-colors shadow-lg">
+                        <i data-lucide="log-in" class="w-5 h-5"></i> <span data-i18n="btnLogin">Giriş Yap</span>
+                    </button>
+                </div>
+
+                <!-- Logged In State -->
+                <div id="profile-logged-in" class="hidden">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        
+                        <!-- User Detail Card -->
+                        <div class="bg-[#0a0a0a] p-8 rounded-2xl border border-neutral-800/80 flex flex-col items-center text-center shadow-lg transition-colors duration-500">
+                            <div class="relative mb-4 group">
+                                <img id="profile-page-avatar" src="" alt="Avatar" class="w-28 h-28 rounded-full border-4 border-neutral-800 shadow-[0_0_20px_rgba(255,255,255,0.05)] object-cover">
+                                <div class="absolute inset-0 rounded-full border-4 border-indigo-500/0 group-hover:border-indigo-500/50 transition-colors duration-300"></div>
+                            </div>
+                            <h3 id="profile-page-name" class="text-xl font-extrabold text-white mb-1"></h3>
+                            <p id="profile-page-email" class="text-sm text-neutral-500 mb-8 font-medium"></p>
+                            
+                            <button id="profile-logout-btn" class="w-full py-2.5 bg-neutral-800 hover:bg-red-600/20 hover:text-red-400 hover:border-red-600/30 text-neutral-300 rounded-xl transition-colors border border-neutral-700 flex items-center justify-center gap-2 font-bold">
+                                <i data-lucide="log-out" class="w-4 h-4"></i> <span data-i18n="btnLogout">Çıkış Yap</span>
+                            </button>
+                        </div>
+
+                        <!-- User Stats & Actions -->
+                        <div class="md:col-span-2 space-y-6">
+                            
+                            <!-- Stats Card -->
+                            <div class="bg-[#0a0a0a] p-6 sm:p-8 rounded-2xl border border-neutral-800/80 shadow-lg transition-colors duration-500">
+                                <h4 class="text-sm font-bold text-neutral-500 uppercase tracking-widest mb-5 flex items-center gap-2">
+                                    <i data-lucide="bar-chart-2" class="w-4 h-4"></i> <span data-i18n="profileStats">İstatistikler</span>
+                                </h4>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-black/50 p-6 rounded-xl border border-neutral-800/50 flex flex-col justify-center transition-colors duration-500">
+                                        <span class="text-4xl font-extrabold text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]" id="profile-stat-percent">0%</span>
+                                        <span class="text-xs text-neutral-500 mt-2 font-semibold uppercase tracking-wider" data-i18n="masteryProgress">Uzmanlık İlerlemesi</span>
+                                    </div>
+                                    <div class="bg-black/50 p-6 rounded-xl border border-neutral-800/50 flex flex-col justify-center transition-colors duration-500">
+                                        <span class="text-4xl font-extrabold text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]"><span id="profile-stat-completed">0</span><span class="text-xl text-neutral-600">/<span id="profile-stat-total">0</span></span></span>
+                                        <span class="text-xs text-neutral-500 mt-2 font-semibold uppercase tracking-wider" data-i18n="profileTasks">Tamamlanan Görev</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Danger Zone -->
+                            <div class="bg-red-950/10 p-6 sm:p-8 rounded-2xl border border-red-900/30">
+                                <h4 class="text-sm font-bold text-red-500/80 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4"></i> <span data-i18n="profileDanger">Tehlike Bölgesi</span>
+                                </h4>
+                                <p class="text-sm text-neutral-400 mb-5 leading-relaxed" data-i18n="profileResetDesc">İlerlemenizi sıfırlamak, işaretlediğiniz tüm görevleri temizler ve veritabanındaki kayıtlarınızı günceller. Bu işlem geri alınamaz.</p>
+                                <button id="profile-reset-btn" class="py-2.5 px-5 bg-red-600/10 hover:bg-red-600 text-red-500 hover:text-white rounded-xl transition-colors border border-red-600/30 hover:border-red-600 font-bold flex items-center justify-center gap-2 w-full sm:w-auto shadow-sm">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i> <span data-i18n="profileReset">İlerlemeyi Sıfırla</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Firebase SDK Setup -->
@@ -476,27 +552,50 @@ diag debug enable</pre>
         const userName = document.getElementById('user-name');
         const userPhoto = document.getElementById('user-photo');
         const loginAlert = document.getElementById('login-alert');
+        
+        // Profile Elements
+        const profileLoggedOut = document.getElementById('profile-logged-out');
+        const profileLoggedIn = document.getElementById('profile-logged-in');
+        const profilePageAvatar = document.getElementById('profile-page-avatar');
+        const profilePageName = document.getElementById('profile-page-name');
+        const profilePageEmail = document.getElementById('profile-page-email');
+        const profileLogoutBtn = document.getElementById('profile-logout-btn');
 
         // Auth State Observer
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 // User is signed in
                 currentUser = user;
+                
+                // Top Nav Update
                 loginBtn.classList.add('hidden');
                 userInfo.classList.remove('hidden');
                 userName.textContent = user.displayName.split(' ')[0];
                 userPhoto.src = user.photoURL || 'https://via.placeholder.com/150';
                 loginAlert.classList.add('hidden');
                 
+                // Profile Page Update
+                profileLoggedOut.classList.add('hidden');
+                profileLoggedIn.classList.remove('hidden');
+                profilePageName.textContent = user.displayName;
+                profilePageEmail.textContent = user.email;
+                profilePageAvatar.src = user.photoURL || 'https://via.placeholder.com/150';
+
                 // Load user progress from Firestore
                 await loadUserProgress(user.uid);
             } else {
                 // User is signed out
                 currentUser = null;
+                
+                // Top Nav Update
                 loginBtn.classList.remove('hidden');
                 userInfo.classList.add('hidden');
                 loginAlert.classList.remove('hidden');
                 
+                // Profile Page Update
+                profileLoggedOut.classList.remove('hidden');
+                profileLoggedIn.classList.add('hidden');
+
                 // Clear checkboxes if logged out
                 document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
                 window.updateProgress();
@@ -512,9 +611,11 @@ diag debug enable</pre>
         });
 
         // Logout Handler
-        logoutBtn.addEventListener('click', () => {
+        const doLogout = () => {
             signOut(auth).catch((error) => console.error("Logout failed:", error));
-        });
+        };
+        logoutBtn.addEventListener('click', (e) => { e.stopPropagation(); doLogout(); });
+        profileLogoutBtn.addEventListener('click', doLogout);
 
         // Save Progress to Firestore
         window.saveProgressToDB = async () => {
@@ -558,11 +659,20 @@ diag debug enable</pre>
                 tabGap: "NSE 7 -> FCX Boşluk Analizi",
                 tabDebug: "Derin Debug Hile Kağıdı",
                 tabResources: "Kaynaklar & Linkler",
+                tabProfile: "Profilim",
                 curriculumTitle: "FCX Master Lab Müfredatı",
                 curriculumDesc: "Tüm görevler FortiOS 7.2/7.4 Admin Guide ve Troubleshooting KB'lerine referanslanmıştır.",
                 btnExpandAll: "Tümünü Aç/Kapat",
                 btnLogin: "Giriş Yap",
+                btnLogout: "Çıkış Yap",
                 loginAlert: "İlerlemenizi buluta kaydetmek ve farklı cihazlardan erişmek için lütfen giriş yapın.",
+                profileNotLoggedInTitle: "Giriş Yapılmadı",
+                profileNotLoggedIn: "Profilinizi ve istatistiklerinizi görmek için lütfen Google hesabınızla giriş yapın.",
+                profileStats: "İstatistikler",
+                profileTasks: "Tamamlanan Görev",
+                profileDanger: "Tehlike Bölgesi",
+                profileResetDesc: "İlerlemenizi sıfırlamak, işaretlediğiniz tüm görevleri temizler ve veritabanındaki kayıtlarınızı günceller. Bu işlem geri alınamaz.",
+                profileReset: "İlerlemeyi Sıfırla",
                 gapTitle1: "NSE 7 Olarak Zaten Bildikleriniz",
                 gap1_1: "Temel Firewall Policy ve NAT kuralları.",
                 gap1_2: "Basit OSPF komşulukları ve statik routing.",
@@ -599,11 +709,20 @@ diag debug enable</pre>
                 tabGap: "NSE 7 -> FCX Gap Analysis",
                 tabDebug: "Deep Debug Cheatsheet",
                 tabResources: "Resources & Links",
+                tabProfile: "My Profile",
                 curriculumTitle: "FCX Master Lab Curriculum",
                 curriculumDesc: "All tasks are referenced to the FortiOS 7.2/7.4 Admin Guide and Troubleshooting KBs.",
                 btnExpandAll: "Expand / Collapse All",
                 btnLogin: "Login",
+                btnLogout: "Logout",
                 loginAlert: "Please login to save your progress to the cloud and access it from any device.",
+                profileNotLoggedInTitle: "Not Logged In",
+                profileNotLoggedIn: "Please login with your Google account to view your profile and statistics.",
+                profileStats: "Statistics",
+                profileTasks: "Completed Tasks",
+                profileDanger: "Danger Zone",
+                profileResetDesc: "Resetting your progress will clear all marked tasks and update your database records. This action cannot be undone.",
+                profileReset: "Reset Progress",
                 gapTitle1: "What You Already Know as an NSE 7",
                 gap1_1: "Basic Firewall Policy and NAT rules.",
                 gap1_2: "Simple OSPF adjacencies and static routing.",
@@ -995,17 +1114,35 @@ diag debug enable</pre>
             const checked = Array.from(checkboxes).filter(c => c.checked).length;
             const percentage = total === 0 ? 0 : Math.round((checked / total) * 100);
             
+            // Top Nav Progress Bar
             const progressBar = document.getElementById('mainProgress');
             const progressText = document.getElementById('progressText');
-            
             progressBar.style.width = percentage + '%';
             progressText.innerText = percentage + '%';
+
+            // Profile Page Stats Update
+            const profileStatPercent = document.getElementById('profile-stat-percent');
+            const profileStatCompleted = document.getElementById('profile-stat-completed');
+            const profileStatTotal = document.getElementById('profile-stat-total');
+            
+            if (profileStatPercent) profileStatPercent.innerText = percentage + '%';
+            if (profileStatCompleted) profileStatCompleted.innerText = checked;
+            if (profileStatTotal) profileStatTotal.innerText = total;
 
             // Save to Firebase if user is logged in
             if (typeof window.saveProgressToDB === 'function') {
                 window.saveProgressToDB();
             }
         }
+
+        // Reset Progress
+        document.getElementById('profile-reset-btn').addEventListener('click', () => {
+            const msg = currentLang === 'tr' ? "Tüm ilerlemeniz silinecek. Emin misiniz?" : "All your progress will be deleted. Are you sure?";
+            if(confirm(msg)) {
+                document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                window.updateProgress(); // This triggers Firebase save with empty states
+            }
+        });
 
         // Initialize App
         window.onload = () => {
